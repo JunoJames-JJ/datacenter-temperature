@@ -2,7 +2,9 @@
 
 **An AI system that predicts datacenter temperature before it becomes a problem.**
 
-Cooling is one of the biggest costs in running a datacenter. If temperature is only measured *after* it rises, operators react late, either wasting energy by over-cooling or risking hardware damage by under-cooling. This project predicts temperature ahead of time from live operating conditions, so cooling can be adjusted early.
+Cooling is one of the biggest costs in running a datacenter. If temperature is only measured *after* it rises, operators react late, either wasting energy by over-cooling or risking hardware damage by under-cooling. This project predicts temperature ahead of time from live operating conditions, so cooling can be adjusted early. 
+
+![Dashboard screenshot](docs/dashboard.png)
 
 ## How it works
 
