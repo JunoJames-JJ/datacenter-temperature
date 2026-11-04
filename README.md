@@ -19,19 +19,27 @@ Live conditions  ->  ML model  ->  Predicted temperature  ->  Status + dashboard
 **Output**
 - Predicted temperature in °C, with a Safe / Warning / Overheating status
 
-## Project status
+## Architecture
 
-| Part | Status |
-|---|---|
-| Interactive dashboard (React) | Done |
-| Live chart, status indicator, server rack view, auto-simulation | Done |
-| Prediction logic | Placeholder formula (for demo purposes) |
-| Dataset preparation | Planned |
-| Random Forest / XGBoost regression model | Planned |
-| Python API (FastAPI) connecting the model to the dashboard | Planned |
-| LSTM time-series forecasting | Future roadmap |
+```
+Sensor data -> Data pipeline -> Database -> ML model -> FastAPI -> Dashboard
+                                   |                       ^
+                                   +--> Cooling Advisor agent (RAG + tools + human approval)
+```
 
-> The dashboard currently runs on a simple simulated formula. The next phase replaces it with a trained machine learning model.
+## Roadmap
+
+| Phase | What gets built | Status |
+|---|---|---|
+| 1. Dashboard | React dashboard: live chart, status indicator, server rack view, simulation mode | Done |
+| 2. Data pipeline | Dataset preparation, cleaning and feature engineering with pandas, storage in PostgreSQL, SQL queries for history | Planned |
+| 3. ML model | Baseline vs Random Forest vs XGBoost regression, evaluation (MAE, RMSE), feature importance, experiment tracking with MLflow | Planned |
+| 4. Model serving | FastAPI prediction service, dashboard connected to the real model, Docker | Planned |
+| 5. Cooling Advisor agent | LangGraph agent that calls the prediction API as a tool, retrieves cooling runbooks (RAG with a vector database), recommends an action and asks a human to approve | Planned |
+| 6. Evaluation and MLOps | Golden test set, retrieval and answer quality metrics, latency and cost tracking, pytest tests, GitHub Actions CI, drift monitoring | Planned |
+| 7. Forecasting and cloud | LSTM for ahead-of-time forecasting, cloud deployment | Future |
+
+> The dashboard currently runs on a simple simulated formula. Phases 2-4 replace it with a trained model.
 
 ## Dashboard features
 
@@ -43,19 +51,18 @@ Live conditions  ->  ML model  ->  Predicted temperature  ->  Status + dashboard
 
 ## Tech stack
 
-- **Frontend:** React, Vite, Recharts
-- **Planned backend:** Python, FastAPI, scikit-learn / XGBoost
+| Area | Tools |
+|---|---|
+| Frontend | React, Vite, Recharts |
+| Data | Python, pandas, SQL, PostgreSQL |
+| Classic ML | scikit-learn, XGBoost, MLflow |
+| Serving | FastAPI, Docker |
+| LLM and agents | LangChain, LangGraph, embeddings, pgvector (RAG) |
+| Evaluation | RAGAS or DeepEval, pytest |
+| DevOps | Git, GitHub Actions (CI/CD) |
 
-## Run it locally
+*Tools in the roadmap are planned and are marked as built only once they are working.*
 
-```bash
-git clone https://github.com/JunoJames-JJ/datacenter-temperature.git
-cd datacenter-temperature
-npm install
-npm run dev
-```
-
-Then open http://localhost:5173
 
 ## Vision
 
