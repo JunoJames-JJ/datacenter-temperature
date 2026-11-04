@@ -46,14 +46,7 @@ Live conditions  ->  ML model  ->  Predicted temperature  ->  Status + dashboard
 - **Frontend:** React, Vite, Recharts
 - **Planned backend:** Python, FastAPI, scikit-learn / XGBoost
 
-## Run it locally
 
-```bash
-git clone https://github.com/JunoJames-JJ/datacenter-temperature.git
-cd datacenter-temperature
-npm install
-npm run dev
-```
 
 Then open http://localhost:5173
 
